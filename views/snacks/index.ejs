@@ -1,0 +1,79 @@
+<h1>Snack Homepage</h1>
+
+<pre><%=user%></pre>
+
+<% include ../partials/flash %>
+
+<img src="logo.png" alt="My Logo" width="100">
+<%# FIRST PART: THE FORM %>
+<form method="post" action="/snacks">
+  <h2>Add A Snack</h2>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control" name="snacks[name]" id="name" placeholder="Name">
+    </div>
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control" name="snacks[taste]" id="type" placeholder="Taste">
+    </div>
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control" name="snacks[ingredient]" id="ingredient" placeholder="Ingredient">
+    </div>
+    <h2>Add A Nutrients</h2>
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control" name="snacks[fat]" id="fat" placeholder="Total Fat">
+    </div>
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control" name="snacks[calorie]" id="calorie" placeholder="Calories">
+    </div>
+    <div class="form-group col-md-4">
+      <button type="submit" class="btn btn-success btn-block">Add an snack</button>
+    </div>
+  </div>
+</form>
+
+<%# SECOND PART: LISTING ANIMALS %>
+<div class="row">
+  <h2>All Snacks</h2>
+  <% snacks.forEach(function(snack) { %>
+    <div class="col-md-4">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= snack.name %>
+            <small>(member since <%= snack.member_since%>)</small>
+          </h3>
+        </div>
+        <div class="panel-body">
+          This <%= snack.name %> dog is from a <%= snack.type %> family
+          <br><br>
+          <% if( snack.status === 'deselect') {%>
+            <a
+              class="btn btn-success"
+              href="/snacks/<%=snack.id%>?status=adopted">
+              Adopt
+            </a>
+          <% } else { %>
+            <a
+              class="btn btn-danger"
+              href="/snacks/<%=snack.id%>?status=deselect">
+              Abandon
+            </a>
+          <% }%>
+          <a href="/snacks/<%=snack.id%>" class="btn btn-primary">
+            Show profile
+          </a>
+          <br><br>
+          <form
+            method="POST"
+            action="/snacks/<%= snack.id%>?_method=DELETE"
+          >
+            <button class="btn btn-danger" type="submit">
+              Delete snack
+            </button>
+          </form>
+        </div>
+      </div>
+      <pre><%= snack %></pre>
+    </div>
+  <% }) %>
+</div>
