@@ -4,7 +4,7 @@ var passport = require('passport')
 
 router.get('/signup', function (req, res) {
   res.render('auth/signup', {
-    flash: req.flash('flash')[0]
+    // flash: req.flash('flash')[0]
   }) // render the form
 })
 
@@ -20,20 +20,20 @@ router.post('/signup', function (req, res) {
 
 router.get('/login', function (req, res) {
     res.render('auth/login',{
-      flash: req.flash('flash')[0]
+      // flash: req.flash('flash')[0]
     })
   })
 
-router.post('/login', function (req, res) {
+router.post('/login', function (req, res, next) {
   var loginStrategy = passport.authenticate('local-login', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: false
   })
-  return loginStrategy(req, res)
+  return loginStrategy(req, res, next)
 })
 
-router.get('/logout',function (req,res){
+router.get('/logout', function (req,res){
   req.logout()//remove the session => req.user = undefined, req.isAuthenticated() = false
   res.redirect('/')
 })

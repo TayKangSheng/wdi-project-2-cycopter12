@@ -1,4 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy
+// var FacebookStrategy = require('passport-facebook').Strategy
 const User = require('../models/user')
 
 module.exports = function (passport) {
@@ -17,24 +18,41 @@ module.exports = function (passport) {
     passwordField: 'password',
     passReqToCallback: true
   }, function (req, email, givenpassword, next) {
+    // Case1: Error. return next(err)
+    // Case2: No error, but fail authentation. return next(null, false, null)
+    // Case3: No error, passed authentation. return next(null, dbObject, null)
+
     User.findOne({'local.email': email}, function (err, foundUser) {
       if (err) return next(err)
       // if no user is found
       if (!foundUser) {
-        return next(err, false, req.flash('flash', {
-          type: 'warning',
-          message: 'No user found by this email'
-        }))
+        return next(err, false)
       }
+
+      // if (foundUser.validPassword(givenpassword)) {
+      //   console.log('foundUser password is valid.')
+      //   return next(null, foundUser, null)
+      // } else {
+      //   console.log('foundUser password is not valid.')
+      //   return next(null, false, null)
+      // }
+
+      //   req.flash('flash', {
+      //     type: 'warning',
+      //     message: 'No user found by this email'
+      //   })
+      // }
       //if can find by email
       //check the password
       // if the password is not the same with the one in the db
-      if(!foundUser.validPassword(givenpassword))return next(null,false, req.flash('flash',{
-        type:'danger',
-        message:'Access denied: Password is wrong'
-      }))
+      if(!foundUser.validPassword(givenpassword)) return next(null,false)
+      //  req.flash('flash',{
+      //   type:'danger',
+      //   message:'Access denied: Password is wrong'
+      // })
       //if password is right, then return next with the foundUser
-        return next(err,foundUser)
+        return next(null ,foundUser)
+      //}
     })
   }))
 
@@ -51,10 +69,11 @@ module.exports = function (passport) {
 
       if (foundUser) {
         console.log('the same user with same email found')
-        return next(null, false, req.flash('flash', {
-          type: 'warning',
-          message: 'This email is already used'
-        }))
+        return next(null, false)
+        //   req.flash('flash', {
+        //   type: 'warning',
+        //   message: 'This email is already used'
+        // })
       } else {
         // if not found = new user
         // save user to the db, password is hash
@@ -67,12 +86,26 @@ module.exports = function (passport) {
         })
         newUser.save(function (err, output) {
           // function(err, theNewUser, flashData)
-          return next(null, output, req.flash('flash', {
-            type: 'success',
-            message: 'Hello new user ' + output.local.email
-          }))
+          return next(null, output)
+          //   req.flash('flash', {
+          //   type: 'success',
+          //   message: 'Hello new user ' + output.local.email
+          // })
         })
       }
     })
+  // }))
+  // passport.use('facebook', new FacebookStrategy({
+  //   clientID:process.env.FACEBOOK_API_KEY,
+  //   clientSecret: process.env.FACEBOOK_API_SECRET,
+  //   callbackURL:'http://localhost:4001/auth/facebook/callback',
+  //   enableProof: true,
+  //   profileFields:['name','emails']
+  // }, function(access_token, refresh_token, profile, next){
+  //   process.nextTick(function(){
+  //
+  //   })
+
+
   }))
 }

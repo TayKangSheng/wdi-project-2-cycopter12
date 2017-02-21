@@ -1,7 +1,7 @@
-const User = require('../models/user')
+const Admin = require('../models/user')
 var passport = require('passport')
 
-let userController = {
+let adminController = {
 
   signup: function(req, res) {
     res.render('auth/signup', {
@@ -36,4 +36,4 @@ let userController = {
     res.redirect('/')
   }
 }
-module.exports = userController
+module.exports = adminController
