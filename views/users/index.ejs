@@ -11,11 +11,10 @@
         <div class="panel-heading">
           <h3 class="panel-title">
             <%= snack.name %>
-            <small>(member since <%= snack.member_since%>)</small>
           </h3>
         </div>
         <div class="panel-body">
-          This <%= snack.name %> is from a <%= snack.type %> family
+          <%= snack.name %> 
           <br><br>
           <% if( snack.status === 'deselect') {%>
             <a

@@ -81,6 +81,10 @@ app.get('/', function (req, res) {
   res.render('homepage')
 })
 
+app.get('/', function (req, res){
+  res.render('/profile')
+})
+
 
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
