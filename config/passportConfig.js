@@ -67,7 +67,7 @@ module.exports = function (passport) {
       // call next() middleware with no error arguments + update the flash data
       if (foundUser) {
         console.log('the same user with same email found')
-        return next(null, false,req.flash('flash', {
+        return next(null, false, req.flash('flash', {
           type: 'warning',
           message: 'This email is already used'
         }))
@@ -83,7 +83,7 @@ module.exports = function (passport) {
         })
         newUser.save(function (err, output) {
           // function(err, theNewUser, flashData)
-          return next(null, output,req.flash('flash', {
+          return next(null, output, req.flash('flash', {
             type: 'success',
             message: 'Hello new user ' + output.local.email
           }))

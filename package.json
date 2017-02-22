@@ -4,7 +4,7 @@
   "description": "This is the starter code for WDI projects. Please update this README file with information specific to your project. Replace this paragraph for instance, with a short description of your project. Then update the sections below. Refer to your project specificaion for instructions on how to submit your projects.",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "morgan": "^1.8.1",
     "multer": "^1.3.0",
     "nodemon": "^1.11.0",
-    "passport": "^0.3.2"
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   }
 }

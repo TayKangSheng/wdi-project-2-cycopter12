@@ -7,6 +7,7 @@ var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var expressLayouts = require('express-ejs-layouts')
 var app = express()
+const port = process.env.PORT || 4000
 var router = express.Router()
 var methodOverride = require('method-override')
 var passport = require('passport')
@@ -95,7 +96,7 @@ app.get('/', function (req, res) {
 //   })
 // }
 
-const port = 4000
-app.listen(port, function () {
-  console.log('Snack Shelter App is running on ' + port)
-})
+// const port = 4000
+// app.listen(port, function () {
+//   console.log('Snack Shelter App is running on ' + port)
+// })
