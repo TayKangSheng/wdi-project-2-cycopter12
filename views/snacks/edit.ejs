@@ -1,25 +1,28 @@
 <h1>Snack Homepage</h1>
 <pre><%=user%></pre>
-<% include ../partials/flash %>
+<%# include ../partials/flash %>
 
 <%# FIRST PART: THE FORM %>
 <form action=<%= "/snacks/" + snackItem.id + "?_method=PUT" %> method="POST">
   <div class="row">
     <div class="form-group col-md-4">
-      <input type="text" class="form-control" name="snacks[name]" id="name" placeholder="Name">
+      <input type="text" class="form-control" name="snacks[name]" id="name" value="<%= snackItem.name %>">
     </div>
     <div class="form-group col-md-4">
-      <input type="text" class="form-control" name="snacks[taste]" id="type" placeholder="Taste">
+      <input type="text" class="form-control" name="snacks[taste]" id="type" value="<%= snackItem.taste %>">
     </div>
     <div class="form-group col-md-4">
-      <input type="text" class="form-control" name="snacks[ingredient]" id="ingredient" placeholder="Ingredient">
+      <input type="text" class="form-control" name="snacks[ingredient]" id="ingredient" value="<%= snackItem.ingredient %>">
     </div>
     <h2>Edit Nutrients</h2>
     <div class="form-group col-md-4">
-      <input type="text" class="form-control" name="snacks[fat]" id="fat" placeholder="Total Fat">
+      <input type="text" class="form-control" name="snacks[fat]" id="fat" value="<%= snackItem.fat %>">
     </div>
     <div class="form-group col-md-4">
-      <input type="text" class="form-control" name="snacks[calorie]" id="calorie" placeholder="Calories">
+      <input type="text" class="form-control" name="snacks[calorie]" id="calorie" value="<%= snackItem.calorie %>">
+    </div>
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control" name="snacks[description]" id="description" value="<%= snackItem.description %>">
     </div>
     <div class="form-group col-md-4">
       <button type="submit" class="btn btn-success btn-block">Finish</button>

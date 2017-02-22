@@ -28,7 +28,7 @@ app.use(express.static('public'))
 app.use(cookieParser(process.env.SESSION_SECRET))
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge: 660000 },
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({
