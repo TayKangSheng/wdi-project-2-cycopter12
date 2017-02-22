@@ -1,4 +1,6 @@
 const Snack = require('../models/snack')
+var cloudinary = require('cloudinary');
+
 
 let snackController = {
 
@@ -36,38 +38,61 @@ let snackController = {
       ingredient: req.body.snacks.ingredient,
       categoery: req.body.snacks.category,
       fat: Number(req.body.snacks.fat),
-      calorie: Number(req.body.snacks.calorie)
+      calorie: Number(req.body.snacks.calorie),
+      description:req.body.snacks.description
     }, (err, snackItem) => {
       if (err) throw err
       res.redirect('/snacks/')
     })
   },
 
-  create: function (req, res, next) {
-    Snack.create(req.body.snacks, function (err, output) {
-      if (err) {
-        if (err.name === 'ValidationError') {
-          let errMessages = []
-          for (field in err.errors) {
-            errMessages.push(err.errors[field].message)
-          }
+  // create: function (req, res, next) {
+  //   Snack.create(req.body.snacks, function (err, output) {
+  //     if (err) {
+  //       if (err.name === 'ValidationError') {
+  //         let errMessages = []
+  //         for (field in err.errors) {
+  //           errMessages.push(err.errors[field].message)
+  //         }
+  //
+  //         console.log(errMessages)
+  //
+  //         // req.flash('flash', {
+  //         //   type: 'danger',
+  //         //   message: errMessages
+  //         // })
+  //         res.redirect('/snacks')
+  //       }
+  //
+  //       return next(err)
+  //     }
+  //     // req.flash('flash', {
+  //     //   type: 'success',
+  //     //   message: 'Created an snack with name: ' + output.name
+  //     // })
+  //     res.redirect('/snacks')
+  //   })
+  // },
 
-          console.log(errMessages)
 
-          // req.flash('flash', {
-          //   type: 'danger',
-          //   message: errMessages
-          // })
-          res.redirect('/snacks')
-        }
-
-        return next(err)
-      }
-      // req.flash('flash', {
-      //   type: 'success',
-      //   message: 'Created an snack with name: ' + output.name
-      // })
+  create: (req, res) =>{
+    console.log(req.file);
+      cloudinary.uploader.upload(req.file.path, function(result) {
+    let newSnack = new Snack({
+      image:result.url,
+      name: req.body.snacks.name,
+      taste: req.body.snacks.taste,
+      ingredient: req.body.snacks.ingredient,
+      categoery: req.body.snacks.category,
+      fat: Number(req.body.snacks.fat),
+      calorie: Number(req.body.snacks.calorie),
+      description:req.body.snacks.description
+    })
+    newSnack.save((err, savedEntry) =>{
+      if (err) throw err
+      console.log('success!')
       res.redirect('/snacks')
+    })
     })
   },
   delete: function (req, res, next) {

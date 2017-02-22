@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 var SnackSchema = new mongoose.Schema({
+  image: String,
   name: {
     type: String,
     required: [ true, 'Where\'s the name']
@@ -16,10 +17,9 @@ var SnackSchema = new mongoose.Schema({
   calorie:{
       type:Number
   },
-  status: {
+  description:{
     type: String,
-    enum: ['selected', 'unselected'],
-    default: 'unselected'
+    required: [true, 'what is the description']
   }
 })
 

@@ -1,39 +1,27 @@
-const User = require('../models/user')
-var passport = require('passport')
+const User = require('../models/snack')
 
 let userController = {
 
-  signup: function(req, res) {
-    res.render('auth/signup', {
-      // flash: req.flash('flash')[0]
-    })
-  },
-  create: function(req, res) {
-    var signupStrategy = passport.authenticate('local-signup', {
-      successRedirect: '/',
-      failureRedirect: '/signup',
-      // failureFlash: false
-    })
-    return signupStrategy(req, res)
-  },
-  login: function(req, res) {
-    res.render('auth/login', {
-      // flash: req.flash('flash')[0]
+  list: function (req, res) {
+    User.find({}, function (err, output) {
+      res.render('users/index', {
+        snacks: output,
+        // flash: req.flash('flash')[0]
+      })
     })
   },
 
-  create: function(req, res) {
-    var loginStrategy = passport.authenticate('local-login', {
-      successRedirect: '/',
-      failureRedirect: '/login',
-      // failureFlash: false
+  show: function (req, res, next) {
+    if (req.query.status) {
+      return next('route')
+    }
+    User.findById(req.params.id, function (err, output) {
+      if (err) return next(err)
+      res.render('users/show', {
+        snack: output
+      })
     })
-    return loginStrategy(req, res)
-  },
-
-  logout: function(req, res) {
-    req.logout() //remove the session => req.user = undefined, req.isAuthenticated() = false
-    res.redirect('/')
   }
 }
+
 module.exports = userController

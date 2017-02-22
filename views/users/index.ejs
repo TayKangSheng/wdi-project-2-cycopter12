@@ -1,0 +1,41 @@
+<h1>User home page</h1>
+
+<div class="row">
+  <h2>All Snacks</h2>
+  <% snacks.forEach(function(snack) { %>
+    <div class="col-md-4">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= snack.name %>
+            <small>(member since <%= snack.member_since%>)</small>
+          </h3>
+        </div>
+        <div class="panel-body">
+          This <%= snack.name %> is from a <%= snack.type %> family
+          <br><br>
+          <% if( snack.status === 'deselect') {%>
+            <a
+              class="btn btn-success"
+              href="/snacks/<%= snack.id%>?status=selected">
+              unselect
+            </a>
+          <% } else { %>
+            <a
+              class="btn btn-danger"
+              href="/snacks/<%= snack.id%>?status=unselect">
+              Select
+            </a>
+          <% }%>
+          <a href="/snacks/<%= snack.id%>" class="btn btn-primary">
+            Show profile
+          </a>
+          <a class="btn btn-warning" href=<%= "/snacks/" + snack.id + "/edit" %>>
+            Edit
+          </a>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>

@@ -27,6 +27,10 @@ module.exports = function (passport) {
       // if no user is found
       if (!foundUser) {
         return next(err, false)
+          // req.flash('flash', {
+          //   type: 'warning',
+          //   message: 'No user found by this email'
+          // })
       }
 
       // if (foundUser.validPassword(givenpassword)) {
@@ -37,19 +41,14 @@ module.exports = function (passport) {
       //   return next(null, false, null)
       // }
 
-      //   req.flash('flash', {
-      //     type: 'warning',
-      //     message: 'No user found by this email'
-      //   })
-      // }
+
       //if can find by email
       //check the password
       // if the password is not the same with the one in the db
-      if(!foundUser.validPassword(givenpassword)) return next(null,false)
-      //  req.flash('flash',{
-      //   type:'danger',
-      //   message:'Access denied: Password is wrong'
-      // })
+      if(!foundUser.validPassword(givenpassword)) return next(null,false,req.flash('flash',{
+        type:'danger',
+        message:'Access denied: Password is wrong'
+      }))
       //if password is right, then return next with the foundUser
         return next(null ,foundUser)
       //}
@@ -66,14 +65,13 @@ module.exports = function (passport) {
     User.findOne({ 'local.email': email }, function (err, foundUser) {
       // if there's a user with the email
       // call next() middleware with no error arguments + update the flash data
-
       if (foundUser) {
         console.log('the same user with same email found')
         return next(null, false)
-        //   req.flash('flash', {
-        //   type: 'warning',
-        //   message: 'This email is already used'
-        // })
+          // req.flash('flash', {
+          // type: 'warning',
+          // message: 'This email is already used'
+        // }))
       } else {
         // if not found = new user
         // save user to the db, password is hash
