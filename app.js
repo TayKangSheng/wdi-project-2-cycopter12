@@ -82,19 +82,15 @@ app.get('/', function (req, res) {
 })
 
 
-
-// const User = require('./routes/userRoutes')
-// app.use('/snacks', User)
-
-// if (app.get('env') === 'development') {
-//   app.use(function (err, req, res, next) {
-//     res.status(err.status || 500)
-//     res.render('error', {
-//       message: err.message,
-//       error: err
-//     })
-//   })
-// }
+if (app.get('env') === 'development') {
+  app.use(function (err, req, res, next) {
+    res.status(err.status || 500)
+    res.render('error', {
+      message: err.message,
+      error: err
+    })
+  })
+}
 
 // const port = 4000
 app.listen(port, function () {
