@@ -97,6 +97,6 @@ app.get('/', function (req, res) {
 // }
 
 // const port = 4000
-// app.listen(port, function () {
-//   console.log('Snack Shelter App is running on ' + port)
-// })
+app.listen(port, function () {
+  console.log('Snack Shelter App is running on ' + port)
+})
