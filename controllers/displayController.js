@@ -6,7 +6,7 @@ let userController = {
     User.find({}, function (err, output) {
       res.render('users/index', {
         snacks: output,
-        // flash: req.flash('flash')[0]
+        flash: req.flash('flash')[0]
       })
     })
   },

@@ -8,7 +8,7 @@ let snackController = {
     Snack.find({}, function (err, output) {
       res.render('snacks/index', {
         snacks: output,
-        // flash: req.flash('flash')[0]
+        flash: req.flash('flash')[0]
       })
     })
   },
@@ -98,10 +98,10 @@ let snackController = {
   delete: function (req, res, next) {
     Snack.findByIdAndRemove(req.params.id, function (err, output) {
       if (err) return next(err)
-      // req.flash('flash', {
-      //   type: 'warning',
-      //   message: 'Deleted an snack'
-      // })
+      req.flash('flash', {
+        type: 'warning',
+        message: 'Deleted an snack'
+      })
       res.redirect('/snacks')
     })
   }

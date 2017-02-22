@@ -1,5 +1,6 @@
 <h1>Snack Homepage</h1>
-
+<pre><%=user%></pre>
+<% include ../partials/flash %>
 
 <%# FIRST PART: THE FORM %>
 <form action=<%= "/snacks/" + snackItem.id + "?_method=PUT" %> method="POST">

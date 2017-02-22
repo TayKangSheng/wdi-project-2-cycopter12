@@ -4,7 +4,7 @@ var passport = require('passport')
 
 router.get('/signup', function (req, res) {
   res.render('auth/signup', {
-    // flash: req.flash('flash')[0]
+    flash: req.flash('flash')[0]
   }) // render the form
 })
 
@@ -20,7 +20,7 @@ router.post('/signup', function (req, res) {
 
 router.get('/login', function (req, res) {
     res.render('auth/login',{
-      // flash: req.flash('flash')[0]
+      flash: req.flash('flash')[0]
     })
   })
 

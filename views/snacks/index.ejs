@@ -1,6 +1,6 @@
 <h1>Snack Homepage</h1>
-
-<%# include ../partials/flash %>
+<pre><%=user%></pre>
+<% include ../partials/flash %>
 
 <%# FIRST PART: THE FORM %>
 <form enctype="multipart/form-data" method="post" action="/snacks">
@@ -50,19 +50,6 @@
         <div class="panel-body">
           This <%= snack.name %> dog is from a <%= snack.type %> family
           <br><br>
-          <% if( snack.status === 'deselect') {%>
-            <a
-              class="btn btn-success"
-              href="/snacks/<%= snack.id%>?status=selected">
-              unselect
-            </a>
-          <% } else { %>
-            <a
-              class="btn btn-danger"
-              href="/snacks/<%= snack.id%>?status=unselect">
-              Select
-            </a>
-          <% }%>
           <a href="/snacks/<%= snack.id%>" class="btn btn-primary">
             Show profile
           </a>

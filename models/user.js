@@ -6,13 +6,6 @@ var UserSchema = new mongoose.Schema({
     password: String
   }
 })
-//hooked
-// UserSchema.pre('save', function(next){
-//   var user = this;
-//   this.local.password = bcrypt.hashSync(this.password, 10)
-//
-//
-// })
 
 UserSchema.statics.encrypt = function (password) {
   return bcrypt.hashSync(password, 10)

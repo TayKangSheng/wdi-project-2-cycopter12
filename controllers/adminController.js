@@ -5,20 +5,20 @@ let adminController = {
 
   signup: function(req, res) {
     res.render('auth/signup', {
-      // flash: req.flash('flash')[0]
+      flash: req.flash('flash')[0]
     })
   },
   create: function(req, res) {
     var signupStrategy = passport.authenticate('local-signup', {
       successRedirect: '/',
       failureRedirect: '/signup',
-      // failureFlash: false
+      failureFlash: false
     })
     return signupStrategy(req, res)
   },
   login: function(req, res) {
     res.render('auth/login', {
-      // flash: req.flash('flash')[0]
+      flash: req.flash('flash')[0]
     })
   },
 
@@ -26,7 +26,7 @@ let adminController = {
     var loginStrategy = passport.authenticate('local-login', {
       successRedirect: '/',
       failureRedirect: '/login',
-      // failureFlash: false
+      failureFlash: false
     })
     return loginStrategy(req, res)
   },
