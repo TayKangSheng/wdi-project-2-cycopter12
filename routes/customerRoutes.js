@@ -2,32 +2,32 @@ var express = require('express')
 var router = express.Router()
 var passport = require('passport')
 
-router.get('/signup', function (req, res) {
-  res.render('auth/signup', {
+router.get('/signup-customer', function (req, res) {
+  res.render('auth/signup-customer', {
     // flash: req.flash('flash')[0]
   }) // render the form
 })
 
-router.post('/signup', function (req, res) {
+router.post('/signup-customer', function (req, res) {
   var signupStrategy = passport.authenticate('local-signup', {
     successRedirect: '/users',
-    failureRedirect: '/signup',
+    failureRedirect: '/signup-customer',
     failureFlash: false
   })
 
   return signupStrategy(req, res)
 })
 
-router.get('/login', function (req, res) {
-    res.render('auth/login',{
+router.get('/login-customer', function (req, res) {
+    res.render('auth/login-customer',{
       // flash: req.flash('flash')[0]
     })
   })
 
-router.post('/login', function (req, res, next) {
+router.post('/login-customer', function (req, res, next) {
   var loginStrategy = passport.authenticate('local-login', {
     successRedirect: '/users',
-    failureRedirect: '/login',
+    failureRedirect: '/login-customer',
     failureFlash: false
   })
   return loginStrategy(req, res, next)

@@ -67,14 +67,14 @@ app.use(function(req,res,next){
 const SnackRoutes = require('./routes/snackRoutes')
 app.use('/snacks', SnackRoutes)
 
-const UserRoutes = require('./routes/userRoutes')
-app.use('/users', UserRoutes)
+const AdminRoutes = require('./routes/authRoutes')
+app.use('/', AdminRoutes)
 
 const CustomerRoutes =require('./routes/CustomerRoutes')
 app.use('/', CustomerRoutes)
 
-const AdminRoutes = require('./routes/authRoutes')
-app.use('/', AdminRoutes)
+const DisplayRoutes = require('./routes/displayRoutes')
+app.use('/users', DisplayRoutes)
 
 app.get('/', function (req, res) {
   res.render('homepage')
