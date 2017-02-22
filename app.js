@@ -71,7 +71,7 @@ app.use('/snacks', SnackRoutes)
 const AdminRoutes = require('./routes/authRoutes')
 app.use('/', AdminRoutes)
 
-const CustomerRoutes =require('./routes/CustomerRoutes')
+const CustomerRoutes =require('./routes/customerRoutes')
 app.use('/', CustomerRoutes)
 
 const DisplayRoutes = require('./routes/displayRoutes')
