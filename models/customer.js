@@ -3,16 +3,10 @@ var mongoose = require('mongoose')
 var CustomerSchema = new mongoose.Schema({
   local: {
     email: String,
-    password: String
+    password: String,
+    address: String
   }
 })
-//hooked
-// CustomerSchema.pre('save', function(next){
-//   var user = this;
-//   this.local.password = bcrypt.hashSync(this.password, 10)
-//
-//
-// })
 
 CustomerSchema.statics.encrypt = function (password) {
   return bcrypt.hashSync(password, 10)

@@ -1,6 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy
 // var FacebookStrategy = require('passport-facebook').Strategy
 const User = require('../models/user')
+const Customer = require('../models/customer')
 
 module.exports = function (passport) {
   // gives the key to the door

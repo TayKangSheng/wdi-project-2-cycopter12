@@ -18,8 +18,6 @@ var flash = require('connect-flash')
 var cookieParser = require('cookie-parser')
 var MongoStore = require('connect-mongo')(session)
 
-
-
 var mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.Promise=global.Promise
@@ -68,7 +66,7 @@ app.use(function(req,res,next){
 const SnackRoutes = require('./routes/snackRoutes')
 app.use('/snacks', SnackRoutes)
 
-const AdminRoutes = require('./routes/authRoutes')
+const AdminRoutes = require('./routes/adminRoutes')
 app.use('/', AdminRoutes)
 
 const CustomerRoutes =require('./routes/customerRoutes')
