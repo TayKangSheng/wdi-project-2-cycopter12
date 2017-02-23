@@ -79,7 +79,6 @@ let snackController = {
 
 
   create: (req, res) =>{
-    console.log(req.file);
       cloudinary.uploader.upload(req.file.path, function(result) {
     let newSnack = new Snack({
       image:result.url,

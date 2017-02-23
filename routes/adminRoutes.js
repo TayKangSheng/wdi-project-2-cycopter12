@@ -1,9 +1,11 @@
 var express = require('express')
 var router = express.Router()
+const isLoggedIn = require('../security/isLoggedIn')
+const isNotLoggedIn = require('../security/isNotLoggedIn')
 // const adminController = require('../controllers/adminController')
 var passport = require('passport')
 
-router.get('/signup', function (req, res) {
+router.get('/signup', isLoggedIn,function (req, res) {
   res.render('auth/signup', {
     flash: req.flash('flash')[0]
   }) // render the form
@@ -19,7 +21,7 @@ router.post('/signup', function (req, res) {
   return signupStrategy(req, res)
 })
 
-router.get('/login', function (req, res) {
+router.get('/login', isLoggedIn,function (req, res) {
     res.render('auth/login',{
       flash: req.flash('flash')[0]
     })
