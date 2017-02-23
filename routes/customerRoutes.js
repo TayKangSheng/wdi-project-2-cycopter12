@@ -25,7 +25,7 @@ router.get('/login-customer', function (req, res) {
   })
 
 router.post('/login-customer', function (req, res, next) {
-  var loginStrategy = passport.authenticate('local-login', {
+  var loginStrategy = passport.authenticate('local-loginCustomer', {
     successRedirect: '/users',
     failureRedirect: '/login-customer',
     failureFlash: false

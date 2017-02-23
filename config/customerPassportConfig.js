@@ -22,7 +22,7 @@ module.exports = function (passport) {
     Customer.findOne({'local.email': email}, function (err, foundCustomer) {
       if (err) return next(err)
       // if no user is found
-      if (!foundUser) {
+      if (!foundCustomer) {
         return next(err, false, req.flash('flash', {
           type: 'warning',
           message: 'No user found by this email'
