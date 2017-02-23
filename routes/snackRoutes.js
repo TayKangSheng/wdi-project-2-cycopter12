@@ -9,7 +9,7 @@ router.get('/', isNotLoggedIn,snackController.list)
 
 router.get('/:id/edit',isNotLoggedIn, snackController.edit)
 
-router.get('/:id',isNotLoggedIn,snackController.show)
+router.get('/:id',snackController.show)
 
 router.post('/', isNotLoggedIn,upload.single('myFile'),snackController.create)
 
