@@ -2,8 +2,22 @@ const bcrypt = require('bcrypt')
 var mongoose = require('mongoose')
 var UserSchema = new mongoose.Schema({
   local: {
-    email: String,
-    password: String
+    firstName: {
+      type: String,
+      required: [true, 'First name not found.']
+    },
+    lastName: {
+      type: String,
+      required: [true, 'First name not found.']
+    },
+    password: {
+      type: String,
+      required: [true, 'Password not entered.']
+    },
+    email:{
+      type: String,
+      required:[true, 'Email address not found.']
+    }
   }
 })
 
@@ -15,6 +29,6 @@ UserSchema.methods.validPassword = function(givenpassword){
   return bcrypt.compareSync(givenpassword, this.local.password)
 }
 
-var User = mongoose.model('User', UserSchema)
+const User = mongoose.model('User', UserSchema)
 
 module.exports = User

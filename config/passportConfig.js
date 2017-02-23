@@ -63,15 +63,18 @@ module.exports = function (passport) {
         // call next() middleware without error argumants
         let newUser = new User({
           local: {
-            email: email,
-            password: User.encrypt(password) // hased(password)
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            password: User.encrypt(password), // hased(password)
+            email: email
           }
         })
         newUser.save(function (err, output) {
           // function(err, theNewUser, flashData)
+          if (err) console.error(err)
           return next(null, output, req.flash('flash', {
             type: 'success',
-            message: 'Hello new user ' + output.local.email
+            message: 'Hello new user '+ output.local.email
           }))
         })
       }
