@@ -116,7 +116,8 @@ module.exports = function (passport) {
         let newCustomer = new Customer({
           local: {
             email: email,
-            password: User.encrypt(password), // hased(password)
+            password: User.encrypt(password),
+            address: req.body.address // hased(password)
           }
         })
         newCustomer.save(function (err, output) {
