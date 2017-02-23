@@ -10,12 +10,12 @@ router.get('/signup', function (req, res) {
 })
 
 router.post('/signup', function (req, res) {
+  console.log('heeelelele');
   var signupStrategy = passport.authenticate('local-signup', {
     successRedirect: '/snacks',
     failureRedirect: '/signup',
     failureFlash: false
   })
-
   return signupStrategy(req, res)
 })
 

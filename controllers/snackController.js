@@ -5,6 +5,9 @@ var cloudinary = require('cloudinary');
 let snackController = {
 
   list: function (req, res) {
+    console.log('We are in snacks/list')
+    console.log('req.user', req.user)
+    console.log('req.isAuthenticated', req.isAuthenticated)
     Snack.find({}, function (err, output) {
       res.render('snacks/index', {
         snacks: output,

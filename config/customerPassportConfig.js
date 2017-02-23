@@ -4,16 +4,44 @@ const Customer = require('../models/customer')
 
 module.exports = function (passport) {
   // gives the key to the door
-  passport.serializeUser(function (customer, next) {
-    next(null, customer.id)
-  })
+  // passport.serializeUser(function (customer, next) {
+  //   next(null, customer.id)
+  // })
   // derived user from session=req.user
-  passport.deserializeUser(function (id, next) {
-    User.findById(id, function (err, customer) {
-      next(err, customer)
+  // passport.deserializeUser(function (id, next) {
+  //   console.log("Come Here!");
+  //   Customer.findById(id, function (err, customer) {
+  //     next(err, customer)
+  //   })
+  // })
+  passport.use('local-loginCustomer', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+  }, function (req, email, givenpassword, next) {
+    Customer.findOne({'local.email': email}, function (err, foundCustomer) {
+      if (err) return next(err)
+      // if no user is found
+      if (!foundUser) {
+        return next(err, false, req.flash('flash', {
+          type: 'warning',
+          message: 'No user found by this email'
+        }))
+      }
+
+      if (!foundCustomer.validPassword(givenpassword)) {
+        return next(null, false, req.flash('flash', {
+          type: 'danger',
+          message: 'Access denied: Password is wrong'
+        }))
+      }
+      // if password is right, then return next with the foundUser
+      return next(null, foundCustomer)
+      // }
     })
-  })
-  passport.use('local-signup', new LocalStrategy({
+  }))
+
+  passport.use('local-signupCustomer', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true

@@ -9,6 +9,7 @@ module.exports = function (passport) {
   })
   // derived user from session=req.user
   passport.deserializeUser(function (id, next) {
+    console.log('I am Here!');
     User.findById(id, function (err, user) {
       next(err, user)
     })

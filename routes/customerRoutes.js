@@ -9,7 +9,7 @@ router.get('/signup-customer', function (req, res) {
 })
 
 router.post('/signup-customer', function (req, res) {
-  var signupStrategy = passport.authenticate('local-signup', {
+  var signupStrategy = passport.authenticate('local-signupCustomer', {
     successRedirect: '/users',
     failureRedirect: '/signup-customer',
     failureFlash: false

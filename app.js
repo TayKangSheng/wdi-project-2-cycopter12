@@ -38,8 +38,8 @@ app.use(session({
 // initialize passport into your application
 app.use(passport.initialize())
 app.use(passport.session())
-require('./config/passportConfig')(passport)
 require('./config/customerPassportConfig')(passport)
+require('./config/passportConfig')(passport)
 
 app.use(flash())
 
@@ -86,13 +86,13 @@ app.get('/', function (req, res){
 
 
 if (app.get('env') === 'development') {
-  app.use(function (err, req, res, next) {
-    res.status(err.status || 500)
-    res.render('error', {
-      message: err.message,
-      error: err
-    })
-  })
+  // app.use(function (err, req, res, next) {
+  //   res.status(err.status || 500)
+  //   res.render('error', {
+  //     message: err.message,
+  //     error: err
+  //   })
+  // })
 }
 
 // const port = 4000
