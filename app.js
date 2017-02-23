@@ -39,6 +39,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 require('./config/passportConfig')(passport)
+require('./config/customerPassportConfig')(passport)
 
 app.use(flash())
 

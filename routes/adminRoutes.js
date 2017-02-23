@@ -1,5 +1,6 @@
 var express = require('express')
 var router = express.Router()
+// const adminController = require('../controllers/adminController')
 var passport = require('passport')
 
 router.get('/signup', function (req, res) {
@@ -37,5 +38,18 @@ router.get('/logout', function (req,res){
   req.logout()//remove the session => req.user = undefined, req.isAuthenticated() = false
   res.redirect('/')
 })
+
+// router.get('/signup', adminController.signup)
+//
+// router.post('/signup', adminController.authCreate)
+//
+// router.get('/login', adminController.login)
+//
+// router.post('/login', adminController.authLogin)
+//
+// router.get('/users/:id', adminController.show)
+//
+// router.get('/logout', adminController.logout)
+
 
 module.exports = router
