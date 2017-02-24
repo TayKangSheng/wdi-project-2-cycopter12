@@ -18,4 +18,6 @@ router.put('/:id', isNotLoggedIn, snackController.update)
 router.delete('/:id', isNotLoggedIn,snackController.delete)
 
 
+
+
 module.exports = router

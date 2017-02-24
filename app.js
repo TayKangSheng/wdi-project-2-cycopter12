@@ -50,6 +50,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'ejs')
 app.use(expressLayouts)
 // app.engine('ejs', require('ejs').renderFile)
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/test', function (req, res) {
   console.log(process.env); res.send('secret is ' + process.env.SESSION_SECRET)

@@ -20,10 +20,11 @@ var SnackSchema = new mongoose.Schema({
   description:{
     type: String,
     required: [true, 'what is the description']
-  }
-  // comment[{
-  //   type: mongoose.Schema.Types.ObjectId
-  // }]
+  },
+  comment:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
+  }]
 })
 
 var Snack = mongoose.model('Snack', SnackSchema)

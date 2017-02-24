@@ -6,4 +6,6 @@ router.get('/', displayController.list)
 
 router.get('/:id', displayController.show)
 
+router.post('/:id', displayController.comment)
+
 module.exports = router

@@ -1,6 +1,5 @@
 const Snack = require('../models/snack')
-var cloudinary = require('cloudinary');
-
+var cloudinary = require('cloudinary')
 
 let snackController = {
 
@@ -19,13 +18,18 @@ let snackController = {
     if (req.query.status) {
       return next('route')
     }
-    Snack.findById(req.params.id, function (err, output) {
-      if (err) return next(err)
+    Snack.findById(req.params.id)
+    .populate('comment')
+    .exec(function (err, output) {
+      if (err) {
+        return next(err)
+      }
       res.render('snacks/show', {
         snack: output
       })
     })
   },
+  
   edit: (req, res) => {
     Snack.findById(req.params.id, (err, snackItem) => {
       if (err) throw err
@@ -42,30 +46,30 @@ let snackController = {
       categoery: req.body.snacks.category,
       fat: Number(req.body.snacks.fat),
       calorie: Number(req.body.snacks.calorie),
-      description:req.body.snacks.description
+      description: req.body.snacks.description
     }, (err, snackItem) => {
       if (err) throw err
       res.redirect('/snacks/')
     })
   },
 
-  create: (req, res) =>{
-      cloudinary.uploader.upload(req.file.path, function(result) {
-    let newSnack = new Snack({
-      image:result.url,
-      name: req.body.snacks.name,
-      taste: req.body.snacks.taste,
-      ingredient: req.body.snacks.ingredient,
-      categoery: req.body.snacks.category,
-      fat: Number(req.body.snacks.fat),
-      calorie: Number(req.body.snacks.calorie),
-      description:req.body.snacks.description
-    })
-    newSnack.save((err, savedEntry) =>{
-      if (err) throw err
-      console.log('success!')
-      res.redirect('/snacks')
-    })
+  create: (req, res) => {
+    cloudinary.uploader.upload(req.file.path, function (result) {
+      let newSnack = new Snack({
+        image: result.url,
+        name: req.body.snacks.name,
+        taste: req.body.snacks.taste,
+        ingredient: req.body.snacks.ingredient,
+        categoery: req.body.snacks.category,
+        fat: Number(req.body.snacks.fat),
+        calorie: Number(req.body.snacks.calorie),
+        description: req.body.snacks.description
+      })
+      newSnack.save((err, savedEntry) => {
+        if (err) throw err
+        console.log('success!')
+        res.redirect('/snacks')
+      })
     })
   },
   delete: function (req, res, next) {

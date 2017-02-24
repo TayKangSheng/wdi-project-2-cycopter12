@@ -11,10 +11,10 @@ var commentSchema = mongoose.Schema({
       type: String,
       required: true,
     },
-    snack_id: {
+    snackId: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Post',
-    }
+      ref: 'Snack',
+    }]
 })
 
 var Comment = mongoose.model('Comment', commentSchema)

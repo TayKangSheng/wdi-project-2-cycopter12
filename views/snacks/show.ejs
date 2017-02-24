@@ -3,6 +3,26 @@
     <h2><%= snack.name%></h2>
     <p><%= snack.description %></p>
     <img src="<%= snack.image %>" alt="image" class="img-rounded" width="200">
+
+    <div class="container">
+        <ul class="list-group">
+          <% if (snack.comment.length > 0) { %>
+          <% snack.comment.forEach(function(output) {%>
+            <%#console.log(snack.comment)%>
+            <p><%=output.name + ' commented: ' + output.comment%><p>
+          <% }) %>
+          <% } %>
+        </ul>
+    </div>
+    <pre> <%=snack%> </pre
+
+    <form action="/users/<%=snack.id%>" method="post" id="comment">
+
+    <input type="text" class="form-control" id="commentName" name="comment[name]" placeholder="Your name">
+    <input type="text" class="form-control" id="commentForm" name="comment[comment]" placeholder="Say something!">
+
+    <button type="submit" class="btn btn-default btn-primary" role="button" id="Submit">Comment</button>
+    </form>
   </div>
 </div>
 </div>
