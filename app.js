@@ -38,7 +38,6 @@ app.use(session({
 // initialize passport into your application
 app.use(passport.initialize())
 app.use(passport.session())
-require('./config/customerPassportConfig')(passport)
 require('./config/passportConfig')(passport)
 
 app.use(flash())
@@ -69,9 +68,6 @@ app.use('/snacks', SnackRoutes)
 
 const AdminRoutes = require('./routes/adminRoutes')
 app.use('/', AdminRoutes)
-
-const CustomerRoutes =require('./routes/customerRoutes')
-app.use('/', CustomerRoutes)
 
 const DisplayRoutes = require('./routes/displayRoutes')
 app.use('/users', DisplayRoutes)

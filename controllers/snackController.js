@@ -49,35 +49,6 @@ let snackController = {
     })
   },
 
-  // create: function (req, res, next) {
-  //   Snack.create(req.body.snacks, function (err, output) {
-  //     if (err) {
-  //       if (err.name === 'ValidationError') {
-  //         let errMessages = []
-  //         for (field in err.errors) {
-  //           errMessages.push(err.errors[field].message)
-  //         }
-  //
-  //         console.log(errMessages)
-  //
-  //         // req.flash('flash', {
-  //         //   type: 'danger',
-  //         //   message: errMessages
-  //         // })
-  //         res.redirect('/snacks')
-  //       }
-  //
-  //       return next(err)
-  //     }
-  //     // req.flash('flash', {
-  //     //   type: 'success',
-  //     //   message: 'Created an snack with name: ' + output.name
-  //     // })
-  //     res.redirect('/snacks')
-  //   })
-  // },
-
-
   create: (req, res) =>{
       cloudinary.uploader.upload(req.file.path, function(result) {
     let newSnack = new Snack({
