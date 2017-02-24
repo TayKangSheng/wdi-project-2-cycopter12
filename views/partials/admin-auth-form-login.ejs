@@ -11,3 +11,24 @@
 
   <input class="btn btn-default" type="submit">
 </form>
+
+<form method="post" action="<%= formUrl %>">
+<div class='preload login--container'>
+<div class='login--form'>
+  <div class='login--username-container'>
+    <label>Email</label>
+      <input class="form-control" type="email" name="email" id="email">
+  </div>
+  <div class='login--password-container'>
+    <label>Password</label>
+      <input class="form-control" type="password" name="password" id="password">
+    <button class='js-toggle-login login--login-submit'>Login</button>
+  </div>
+</div>
+<div class='login--toggle-container'>
+  <small>Hey you,</small>
+  <div class='js-toggle-login'>Login</div>
+  <small>already</small>
+</div>
+</div>
+</form>

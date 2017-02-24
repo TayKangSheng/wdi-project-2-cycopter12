@@ -75,8 +75,11 @@ app.use('/users', DisplayRoutes)
 app.get('/', function (req, res) {
   res.render('homepage')
 })
+app.get('/about', function (req, res) {
+  res.render('about')
+})
 
-app.get('/', function (req, res){
+app.get('/profile', function (req, res){
   res.render('/profile')
 })
 

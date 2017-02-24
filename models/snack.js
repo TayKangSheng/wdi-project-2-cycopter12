@@ -21,6 +21,9 @@ var SnackSchema = new mongoose.Schema({
     type: String,
     required: [true, 'what is the description']
   }
+  // comment[{
+  //   type: mongoose.Schema.Types.ObjectId
+  // }]
 })
 
 var Snack = mongoose.model('Snack', SnackSchema)
