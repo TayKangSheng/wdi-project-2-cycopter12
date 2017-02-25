@@ -33,8 +33,10 @@
             <span class="icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <a class="navbar-brand" href="/">Welcome</a>
               <ul class="nav navbar-nav">
+                <li><a class="active" href="/"><img src="../img/1j_ojl1FOMkX9WypfBe43D6kjPWGqhFPmBrEwXs1M3EMoAJtlC.png" alt="logo" width="60">
+                </a>
+              </li>
                     <li class="active"><a href="/about">About <span class="sr-only">(current)</span></a></li>
                     <li class="active"><a href="/snacks">Snack Vault <span class="sr-only">(current)</span></a></li>
                     <li class="active"><a href="/users">View All Snacks <span class="sr-only">(current)</span></a></li>
@@ -44,16 +46,8 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <% if (!isAuthenticated) { %>
-              </div>
-              <div class="dropdown navbar-right">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin Login
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu">
               <li><a href="/login">Admin Login</a></li>
               <li><a href="/signup">AdminSign up</a></li>
-              </ul>
-              </div>
-
               <% } else { %>
 
                 <ul class="nav navbar-nav navbar-right">
