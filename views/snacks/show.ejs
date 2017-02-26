@@ -2,6 +2,13 @@
   <div class="form-group col -md-4">
     <h2><%= snack.name%></h2>
     <p><%= snack.description %></p>
+    <h3>Nutrients:</h3>
+    <p>Total Calories: <%= snack.calorie%></p>
+    <p>Total Fat: <%= snack.fat%></p>
+    <h3>Ingredients:</h3>
+    <p><%= snack.ingredient%></p>
+
+
     <img src="<%= snack.image %>" alt="image" class="img-rounded" width="200">
 
     <div class="container">

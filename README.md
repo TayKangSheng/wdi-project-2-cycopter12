@@ -21,7 +21,11 @@ This web app was built using Node.js/Express.
 
 ## Workflow
 
-Did you write user stories, draw wireframes, use task tracking, produce ERDs? Did you use source control, with regular commits? Include links to them here.
+![Wireframes 1](http://i.imgur.com/yOXPYxJ.jpg)
+
+![Wireframes 2](http://i.imgur.com/4my0JcM.jpg)
+
+![Workflow 1](http://i.imgur.com/MuH1QJ3.png)
 
 
 ## References and Acknowledgments
