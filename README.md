@@ -25,7 +25,7 @@ This web app was built using Node.js/Express.
 
 ![Wireframes 2](http://i.imgur.com/4my0JcM.jpg)
 
-![Wireframes 2](http://i.imgur.com/FXgp37e.jpg)
+![Wireframes 3](http://i.imgur.com/w2IOaa6.jpg)
 
 * Flow Chart:
 ![Workflow 1](http://i.imgur.com/MuH1QJ3.png)
